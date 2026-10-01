@@ -17,7 +17,7 @@ def crear(nombre, edad):
 
     persona= {'id_persona': id_persona, 'nombre': nombre, 'edad': edad}
     # Agregar en un lista los registros de una persona en la memoria
-    datos['personas'].append(persona)
+    datos['persona'].append(persona)
     # Aqui se guardan los datos actualizados en el archivo JSON
     repo_json.guardar(datos)
     return datos['ultimo_id_persona']

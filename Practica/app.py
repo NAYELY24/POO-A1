@@ -26,4 +26,25 @@ def menu():
         elif opcion == 3:
             return
 
-menu()
+# menu()
+
+def menu2():
+    while True:
+        print('----Menú del proyecto----')
+        print('1. Crear estudiante')
+        print('2. Listar estudiante')
+        print('3. Salir')
+
+        opcion = input('Ingrese una opcion: ')
+        if opcion == '1':
+            curso = input('Ingrese el curso del estudiante: ')
+            estudiante_service.crear(curso)
+            print('Estudiante creado correctamente')
+
+        elif opcion == 2:
+            pass
+
+        elif opcion == 3:
+            return
+
+menu2()
