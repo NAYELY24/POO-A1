@@ -5,6 +5,7 @@
 
 from services import persona_service
 from services import estudiante_service
+from models.persona import Persona
 
 def menu():
     while True:
@@ -13,7 +14,9 @@ def menu():
         print('2. Listar persona')
         print('3. Actualizar persona')
         print('4. Eliminar persona')
-        print('5. Salir')
+        print('5. Buscar persona')
+        print('6. Llamar al metodo presentarse')
+        print('7. Salir')
 
         opcion = input('Ingrese una opcion: ')
         if opcion == '1':
@@ -45,6 +48,17 @@ def menu():
                 print('El ID ingresado no existe')
 
         elif opcion == '5':
+            id_persona = int(input('Ingrese el ID de la persona que quiere buscar: '))
+            print(persona_service.buscar_por_id(id_persona))
+
+        elif opcion == '6':
+            # REALIZARLO EN UNA FUNCION CREADA EN SERVICE
+            id_persona = int(input('Ingrese el ID del registro: '))
+            persona = persona_service.buscar_por_id(id_persona)
+            p1 = Persona(persona['id_persona'], persona['nombre'], persona['edad'])
+            print(p1.presentarse())
+
+        elif opcion == '7':
             return
 menu()
 
