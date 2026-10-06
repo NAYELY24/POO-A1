@@ -11,7 +11,7 @@ RUTA = 'data/db.json'
 DATOS_INICIALIZADOS ={
             'ultimo_id_persona': 0,
             'ultimo_id_estudiante': 0,
-            'persona': [],
+            'personas': [],
             'estudiante': []
         }
 
