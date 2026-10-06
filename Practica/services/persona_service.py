@@ -8,6 +8,7 @@ def listar():
     # De todos los dato filtra aquellos que pertenecen a la lista de personas
     return datos['personas']
 
+
 def crear(nombre, edad):
     # Cuando se crea un registro se requiere que el ID de la persona empiece desde 1 y se vaya incrementando de 1 en 1.
     # Paso1: Abrir el archivo JSON para verificar el ultimo ID de una persona
@@ -22,9 +23,11 @@ def crear(nombre, edad):
     repo_json.guardar(datos)
     return datos['ultimo_id_persona']
 
+
 def leer():
     datos = repo_json.cargar()
     return datos['personas']
+
 
 def actualizar(id_persona, nombre, edad):
     datos = repo_json.cargar()
@@ -55,12 +58,19 @@ def eliminar(id_persona):
     else:
         raise ValueError('No existen personas registradas')
 
-def buscar_por_cedula():
-    pass
+
+def buscar_por_id(id_persona):
+    datos = repo_json.cargar()
+    if datos['personas']:
+        for persona in datos['personas']:
+            if persona['id_persona'] == id_persona:
+                return persona
+
 
 def filtrar_por_fecha():
     pass
 
 def filtrar_por_estado():
     pass
+
 
