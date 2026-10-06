@@ -17,17 +17,43 @@ def crear(nombre, edad):
 
     persona= {'id_persona': id_persona, 'nombre': nombre, 'edad': edad}
     # Agregar en un lista los registros de una persona en la memoria
-    datos['persona'].append(persona)
+    datos['personas'].append(persona)
     # Aqui se guardan los datos actualizados en el archivo JSON
     repo_json.guardar(datos)
     return datos['ultimo_id_persona']
 
+def leer():
+    datos = repo_json.cargar()
+    return datos['personas']
 
-def actualizar():
-    pass
+def actualizar(id_persona, nombre, edad):
+    datos = repo_json.cargar()
+    if datos['personas']:
+        for persona in datos['personas']:
+            if persona['id_persona'] == id_persona:
+                persona['nombre'] = nombre
+                persona['edad'] = edad
+                repo_json.guardar(datos)
+                return True
+            else:
+                return False
+    else:
+        raise ValueError('No existen personas registradas')
 
-def eliminar():
-    pass
+
+def eliminar(id_persona):
+    datos = repo_json.cargar()  # Viene todos las llaves del  diccionario en REPO_JSON
+    # Para verificar que datos posee valores/elementos
+    if datos['personas']:
+        for persona in datos['personas']:
+            if persona['id_persona'] == id_persona:
+                datos['personas'].remove(persona)
+                repo_json.guardar(datos)
+                return True
+            else:
+                return False
+    else:
+        raise ValueError('No existen personas registradas')
 
 def buscar_por_cedula():
     pass
@@ -37,3 +63,4 @@ def filtrar_por_fecha():
 
 def filtrar_por_estado():
     pass
+
