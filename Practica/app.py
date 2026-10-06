@@ -11,7 +11,9 @@ def menu():
         print('----Menú del proyecto----')
         print('1. Crear persona')
         print('2. Listar persona')
-        print('3. Salir')
+        print('3. Actualizar persona')
+        print('4. Eliminar persona')
+        print('5. Salir')
 
         opcion = input('Ingrese una opcion: ')
         if opcion == '1':
@@ -20,13 +22,31 @@ def menu():
             persona_service.crear(nombre, edad)
             print('Persona creada correctamente')
 
-        elif opcion == 2:
-            pass
+        elif opcion == '2':
+            print(persona_service.listar())
 
-        elif opcion == 3:
+        elif opcion == '3':
+            id_persona = int(input('Ingrese el id de la persona: '))
+            nombre = input('Ingrese el nombre de la persona: ')
+            edad = int(input('Ingrese la edad de la persona'))
+            actualizar = persona_service.actualizar(id_persona, nombre, edad)
+            if actualizar:
+                print('La persona se actualizo correctamente...')
+            else:
+                print('El ID ingresado no existe')
+
+
+        elif opcion == '4':
+            id_persona = int(input('Ingrese el id de la persona: '))
+            eliminacion_exitosa = persona_service.eliminar(id_persona)
+            if eliminacion_exitosa:
+                print('Persona eliminada correctamente')
+            else:
+                print('El ID ingresado no existe')
+
+        elif opcion == '5':
             return
-
-# menu()
+menu()
 
 def menu2():
     while True:
@@ -47,4 +67,4 @@ def menu2():
         elif opcion == 3:
             return
 
-menu2()
+# menu2()
