@@ -10,7 +10,8 @@ class ProductoAdmin(admin.ModelAdmin):
     'nombre',
     'precio',
     'stock',
-    'descripcion'
+    'descripcion',
+    'categoria'
   )
 
   search_Fields = ('nombre', 'descripcion', )
