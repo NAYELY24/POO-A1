@@ -3,7 +3,7 @@ from .models import Producto
 
 # Create your views here.
 # VISTAS BASADAS EN FUNCIONES
-def primera_funcion(request):
+def listar_productos(request):
     #ESTRUCTURA
         # if request.method =="POST":
         #     #EL USUARIO QUIERE ENVIAR INFORMACION AL SERVIDOR
@@ -13,7 +13,15 @@ def primera_funcion(request):
     #SQL
     #select* from productos
     #ORM = MAPEO RELACIONAL DE OBJETOS
-    productos = Producto.objects.all()
+    # Productos con estado activo ordenados por id de forma ascendente
+    productos = Producto.objects.filter(estado = True).order_by("id")
+
+    # Se debe retornar un renderizado
+    # Render = solicitud, plantilla y los datos
+    return render(request, "productos/listar_productos.html", {"productos":productos})
+
+def crear_productos(request):
+    pass
 
 
 
