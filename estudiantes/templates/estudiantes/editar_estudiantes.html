@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Editar Estudiante</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        input:not([type="checkbox"]),
+        textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background-color: #f8fafc;
+            outline: none;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #4f46e5;
+            background-color: white;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #4f46e5;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 min-h-screen
+             flex items-center justify-center p-6">
+
+    <div class="bg-white p-8 rounded-2xl
+                shadow-lg w-full max-w-xl">
+
+        <h2 class="text-2xl font-bold mb-6">
+            Editar Estudiante
+        </h2>
+
+        <form method="POST" class="space-y-5">
+
+            {% csrf_token %}
+
+            {% for campo in formulario %}
+
+                <div>
+
+                    {% if campo.field.widget.input_type == 'checkbox' %}
+
+                        <div class="flex items-center gap-3">
+                            {{ campo }}
+
+                            <label for="{{ campo.id_for_label }}"
+                                   class="font-semibold">
+                                {{ campo.label }}
+                            </label>
+                        </div>
+
+                    {% else %}
+
+                        <label for="{{ campo.id_for_label }}"
+                               class="block font-semibold mb-2">
+                            {{ campo.label }}
+                        </label>
+
+                        {{ campo }}
+
+                    {% endif %}
+
+                    {% for error in campo.errors %}
+                        <p class="text-red-500 text-sm mt-1">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+
+                </div>
+
+            {% endfor %}
+
+            {% for error in formulario.non_field_errors %}
+                <p class="text-red-500 text-sm">
+                    {{ error }}
+                </p>
+            {% endfor %}
+
+            <div class="flex gap-3 pt-4">
+
+                <button type="submit"
+                        class="flex-1 bg-indigo-600 text-white
+                               p-3 rounded-xl font-semibold
+                               hover:bg-indigo-700">
+                    Actualizar Estudiante
+                </button>
+
+                <a href="{% url 'listar_estudiantes' %}"
+                   class="flex-1 bg-slate-200 text-slate-700
+                          p-3 rounded-xl text-center
+                          font-semibold hover:bg-slate-300">
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
